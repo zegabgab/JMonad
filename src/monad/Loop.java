@@ -7,7 +7,7 @@ public interface Loop<T> {
         return new While<>(operator, value -> true);
     }
 
-    T executeOn(T value);
+    T on(T value);
     Loop<T> loopWhile(Predicate<? super T> condition);
     Loop<T> loopFor(int iterations);
 }
@@ -22,9 +22,9 @@ final class While<T> implements Loop<T> {
     }
 
     @Override
-    public T executeOn(T value) {
+    public T on(T value) {
         return condition.test(value) ?
-                executeOn(operator.apply(value)) :
+                on(operator.apply(value)) :
                 value;
     }
 
@@ -55,7 +55,7 @@ final class For<T> implements Loop<T> {
     }
 
     @Override
-    public T executeOn(T value) {
+    public T on(T value) {
         return iterate(value, iterations);
     }
 
