@@ -8,8 +8,8 @@ public interface Loop<T> {
     }
 
     T executeOn(T value);
-    Loop<T> doWhile(Predicate<? super T> condition);
-    Loop<T> doFor(int iterations);
+    Loop<T> loopWhile(Predicate<? super T> condition);
+    Loop<T> loopFor(int iterations);
 }
 
 final class While<T> implements Loop<T> {
@@ -23,19 +23,18 @@ final class While<T> implements Loop<T> {
 
     @Override
     public T executeOn(T value) {
-        while (condition.test(value)) {
-            value = operator.apply(value);
-        }
-        return value;
+        return condition.test(value) ?
+                executeOn(operator.apply(value)) :
+                value;
     }
 
     @Override
-    public Loop<T> doWhile(Predicate<? super T> condition) {
+    public Loop<T> loopWhile(Predicate<? super T> condition) {
         return new While<>(operator, condition);
     }
 
     @Override
-    public Loop<T> doFor(int iterations) {
+    public Loop<T> loopFor(int iterations) {
         return new For<>(operator, iterations);
     }
 }
@@ -49,21 +48,24 @@ final class For<T> implements Loop<T> {
         this.iterations = iterations;
     }
 
-    @Override
-    public T executeOn(T value) {
-        for (int i = 0; i < iterations; i++) {
-            value = operator.apply(value);
-        }
-        return value;
+    private T iterate(T value, int remaining) {
+        return remaining > 0 ?
+                iterate(operator.apply(value), remaining - 1) :
+                value;
     }
 
     @Override
-    public Loop<T> doWhile(Predicate<? super T> condition) {
+    public T executeOn(T value) {
+        return iterate(value, iterations);
+    }
+
+    @Override
+    public Loop<T> loopWhile(Predicate<? super T> condition) {
         return new While<>(operator, condition);
     }
 
     @Override
-    public Loop<T> doFor(int iterations) {
+    public Loop<T> loopFor(int iterations) {
         return new For<>(operator, iterations);
     }
 }
