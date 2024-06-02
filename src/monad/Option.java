@@ -1,6 +1,5 @@
 package monad;
 
-import java.util.*;
 import java.util.function.*;
 
 public sealed interface Option<T> permits One, None {

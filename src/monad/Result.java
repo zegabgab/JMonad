@@ -2,7 +2,7 @@ package monad;
 
 import java.util.function.*;
 
-public interface Result<V,E> {
+public sealed interface Result<V,E> permits Ok, Error {
     static <V,E> Result<V,E> ok(V value) {
         return new Ok<>(value);
     }
