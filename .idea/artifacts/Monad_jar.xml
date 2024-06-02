@@ -2,7 +2,7 @@
   <artifact type="jar" name="Monad:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Monad_jar</output-path>
     <root id="archive" name="Monad.jar">
-      <element id="module-output" name="Monad" />
+      <element id="module-output" name="JMonad" />
     </root>
   </artifact>
 </component>

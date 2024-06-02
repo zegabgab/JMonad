@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Monad.iml" filepath="$PROJECT_DIR$/Monad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JMonad.iml" filepath="$PROJECT_DIR$/JMonad.iml" />
     </modules>
   </component>
 </project>
