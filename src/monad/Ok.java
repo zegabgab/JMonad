@@ -42,7 +42,7 @@ final class Ok<V,E> implements Result<V,E> {
 
     @Override
     public <U> Result<U, E> map(Function<? super V, U> mapper) {
-        return new Ok(mapper.apply(value));
+        return new Ok<>(mapper.apply(value));
     }
 
     @Override
