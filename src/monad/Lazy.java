@@ -3,7 +3,7 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-public final class Lazy<T> {
+public final class Lazy<T> implements Supplier<T> {
     private final Supplier<? extends T> supplier;
     private T value = null;
 
