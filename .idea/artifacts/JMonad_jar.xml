@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="JMonad:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JMonad_jar</output-path>
+    <root id="archive" name="JMonad.jar">
+      <element id="module-output" name="JMonad" />
+    </root>
+  </artifact>
+</component>
