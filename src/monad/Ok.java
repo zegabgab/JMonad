@@ -3,7 +3,7 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class Ok<V,E> implements Result<V,E> {
+final class Ok<V, E> implements Result<V, E> {
     private final V value;
 
     Ok(V value) {

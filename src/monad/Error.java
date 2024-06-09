@@ -3,7 +3,7 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class Error<V,E> implements Result<V,E> {
+final class Error<V, E> implements Result<V, E> {
     private final E error;
 
     Error(E error) {

@@ -8,15 +8,16 @@ public interface Loop<T> {
      * add a terminating condition to make it useful.
      *
      * @param operator the operation to be applied in each iteration
+     * @param <T>      the type being iterated over
      * @return the result of the last iteration
-     * @param <T> the type being iterated over
      */
     static <T> Loop<T> of(UnaryOperator<T> operator) {
         return new While<>(operator, value -> false);
     }
 
     T on(T value);
+
     Loop<T> loopWhile(Predicate<? super T> condition);
+
     Loop<T> loopFor(int iterations);
 }
-

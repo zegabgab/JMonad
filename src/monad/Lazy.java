@@ -3,9 +3,9 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class Lazy<T> {
-    private T value = null;
+public final class Lazy<T> {
     private final Supplier<? extends T> supplier;
+    private T value = null;
 
     Lazy(Supplier<? extends T> supplier) {
         this.supplier = Objects.requireNonNull(supplier);
