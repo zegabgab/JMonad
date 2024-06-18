@@ -20,8 +20,8 @@ public final class Lazy<T> implements Supplier<T> {
      * Creates a new lazy value.
      *
      * @param supplier the function used to calculate the value. This should not return null
+     * @param <T>      the type of the encapsulated value
      * @return a fresh lazy value
-     * @param <T> the type of the encapsulated value
      */
     public static <T> Lazy<T> of(Supplier<? extends T> supplier) {
         return new Lazy<>(supplier);

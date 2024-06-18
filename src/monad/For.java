@@ -18,17 +18,12 @@ final class For<T> implements Loop<T> {
     }
 
     @Override
+    public UnaryOperator<T> action() {
+        return operator;
+    }
+
+    @Override
     public T on(T value) {
         return iterate(value, iterations);
-    }
-
-    @Override
-    public Loop<T> loopWhile(Predicate<? super T> condition) {
-        return new While<>(operator, condition);
-    }
-
-    @Override
-    public Loop<T> loopFor(int iterations) {
-        return new For<>(operator, iterations);
     }
 }
