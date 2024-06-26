@@ -17,6 +17,10 @@ public sealed interface Option<T> permits One, None {
 
     T unwrapOrElse(Supplier<? extends T> other);
 
+    <E extends Throwable> T unwrapOrThrow(E exception) throws E;
+
+    <E extends Throwable> T unwrapOrElseThrow(Supplier<E> exception) throws E;
+
     <U> Option<U> map(Function<? super T, U> mapper);
 
     <U> Option<U> andThen(Function<? super T, ? extends Option<U>> mapper);

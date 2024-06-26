@@ -17,6 +17,10 @@ public sealed interface Result<V, E> permits Ok, Error {
 
     V unwrapOrElse(Supplier<? extends V> other);
 
+    <T extends Throwable> V unwrapOrThrow(T exception) throws T;
+
+    <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) throws T;
+
     E unwrapError();
 
     E unwrapErrorOr(E other);

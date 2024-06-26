@@ -26,6 +26,16 @@ final class Ok<V, E> implements Result<V, E> {
     }
 
     @Override
+    public <T extends Throwable> V unwrapOrThrow(T exception) {
+        return value;
+    }
+
+    @Override
+    public <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) {
+        return value;
+    }
+
+    @Override
     public E unwrapError() {
         throw new NoSuchElementException("No error occurred");
     }

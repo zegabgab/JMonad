@@ -30,6 +30,16 @@ final class None<T> implements Option<T> {
     }
 
     @Override
+    public <E extends Throwable> T unwrapOrThrow(E exception) throws E {
+        throw exception;
+    }
+
+    @Override
+    public <E extends Throwable> T unwrapOrElseThrow(Supplier<E> exception) throws E {
+        throw exception.get();
+    }
+
+    @Override
     public <U> Option<U> map(Function<? super T, U> mapper) {
         return none();
     }

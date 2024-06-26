@@ -26,6 +26,16 @@ final class One<T> implements Option<T> {
     }
 
     @Override
+    public <E extends Throwable> T unwrapOrThrow(E exception) {
+        return value;
+    }
+
+    @Override
+    public <E extends Throwable> T unwrapOrElseThrow(Supplier<E> exception) {
+        return value;
+    }
+
+    @Override
     public <U> Option<U> map(Function<? super T, U> mapper) {
         return new One<>(mapper.apply(value));
     }

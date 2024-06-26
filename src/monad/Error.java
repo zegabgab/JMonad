@@ -26,6 +26,16 @@ final class Error<V, E> implements Result<V, E> {
     }
 
     @Override
+    public <T extends Throwable> V unwrapOrThrow(T exception) throws T {
+        throw exception;
+    }
+
+    @Override
+    public <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) throws T {
+        throw exception.get();
+    }
+
+    @Override
     public E unwrapError() {
         return error;
     }
