@@ -46,6 +46,21 @@ final class One<T> implements Option<T> {
     }
 
     @Override
+    public boolean isOne() {
+        return true;
+    }
+
+    @Override
+    public boolean isNone() {
+        return false;
+    }
+
+    @Override
+    public boolean isOneAnd(Predicate<? super T> predicate) {
+        return predicate.test(value);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         return obj instanceof One<?> other && other.value.equals(value);
     }

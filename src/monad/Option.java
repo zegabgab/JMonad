@@ -24,4 +24,10 @@ public sealed interface Option<T> permits One, None {
     Option<T> filter(Predicate<? super T> predicate);
 
     Option<T> orElse(Supplier<? extends Option<T>> supplier);
+
+    boolean isOne();
+
+    boolean isNone();
+
+    boolean isOneAnd(Predicate<? super T> predicate);
 }

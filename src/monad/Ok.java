@@ -61,4 +61,24 @@ final class Ok<V, E> implements Result<V, E> {
     public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
         return (Result<V, R>) this;
     }
+
+    @Override
+    public boolean isOk() {
+        return true;
+    }
+
+    @Override
+    public boolean isError() {
+        return false;
+    }
+
+    @Override
+    public boolean isOkAnd(Predicate<? super V> predicate) {
+        return predicate.test(value);
+    }
+
+    @Override
+    public boolean isErrorAnd(Predicate<? super E> predicate) {
+        return false;
+    }
 }

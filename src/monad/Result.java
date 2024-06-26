@@ -30,4 +30,12 @@ public sealed interface Result<V, E> permits Ok, Error {
     <R> Result<V, R> mapError(Function<? super E, R> mapper);
 
     <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper);
+
+    boolean isOk();
+
+    boolean isError();
+
+    boolean isOkAnd(Predicate<? super V> predicate);
+
+    boolean isErrorAnd(Predicate<? super E> predicate);
 }

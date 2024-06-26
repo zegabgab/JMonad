@@ -61,4 +61,24 @@ final class Error<V, E> implements Result<V, E> {
     public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
         return mapper.apply(error);
     }
+
+    @Override
+    public boolean isOk() {
+        return false;
+    }
+
+    @Override
+    public boolean isError() {
+        return true;
+    }
+
+    @Override
+    public boolean isOkAnd(Predicate<? super V> predicate) {
+        return false;
+    }
+
+    @Override
+    public boolean isErrorAnd(Predicate<? super E> predicate) {
+        return predicate.test(error);
+    }
 }

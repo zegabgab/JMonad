@@ -50,6 +50,21 @@ final class None<T> implements Option<T> {
     }
 
     @Override
+    public boolean isOne() {
+        return false;
+    }
+
+    @Override
+    public boolean isNone() {
+        return true;
+    }
+
+    @Override
+    public boolean isOneAnd(Predicate<? super T> predicate) {
+        return false;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         return obj instanceof None<?>;
     }
