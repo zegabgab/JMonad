@@ -27,8 +27,6 @@ public interface Loop<T> {
         return new For<>(body, iterations);
     }
 
-    UnaryOperator<T> action();
-
     /**
      * Applies this loop on {@code value}.
      *

@@ -3,11 +3,8 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class None<T> implements Option<T> {
+public record None<T>() implements Option<T> {
     private final static None<?> NONE = new None<>();
-
-    private None() {
-    }
 
     @SuppressWarnings("unchecked")
     static <T> None<T> none() {

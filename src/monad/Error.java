@@ -3,10 +3,8 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class Error<V, E> implements Result<V, E> {
-    private final E error;
-
-    Error(E error) {
+public record Error<V, E>(E error) implements Result<V, E> {
+    public Error(E error) {
         this.error = Objects.requireNonNull(error);
     }
 

@@ -3,10 +3,8 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class Ok<V, E> implements Result<V, E> {
-    private final V value;
-
-    Ok(V value) {
+public record Ok<V, E>(V value) implements Result<V, E> {
+    public Ok(V value) {
         this.value = Objects.requireNonNull(value);
     }
 

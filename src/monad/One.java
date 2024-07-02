@@ -3,10 +3,8 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-final class One<T> implements Option<T> {
-    private final T value;
-
-    One(T value) {
+public record One<T>(T value) implements Option<T> {
+    public One(T value) {
         this.value = Objects.requireNonNull(value);
     }
 
