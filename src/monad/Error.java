@@ -10,7 +10,7 @@ public record Error<V, E>(E value) implements Result<V, E> {
 
     @Override
     public V unwrap() {
-        throw new NoSuchElementException("This is an value object");
+        throw new NoSuchElementException("This is an error object");
     }
 
     @Override
@@ -78,6 +78,11 @@ public record Error<V, E>(E value) implements Result<V, E> {
     @Override
     public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
         return mapper.apply(value);
+    }
+
+    @Override
+    public Result<V, E> or(Result<V, E> other) {
+        return other;
     }
 
     @Override

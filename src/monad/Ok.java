@@ -81,6 +81,11 @@ public record Ok<V, E>(V value) implements Result<V, E> {
     }
 
     @Override
+    public Result<V, E> or(Result<V, E> other) {
+        return this;
+    }
+
+    @Override
     public Result<V, E> attempt(Consumer<? super V> action) {
         action.accept(value);
         return this;

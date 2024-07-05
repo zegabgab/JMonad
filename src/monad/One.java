@@ -4,6 +4,11 @@ import java.util.*;
 import java.util.function.*;
 
 public record One<T>(T value) implements Option<T> {
+    @Override
+    public Option<T> or(Option<T> other) {
+        return this;
+    }
+
     public One(T value) {
         this.value = Objects.requireNonNull(value);
     }
@@ -59,7 +64,7 @@ public record One<T>(T value) implements Option<T> {
     }
 
     @Override
-    public Option<T> orElse(Supplier<? extends Option<T>> supplier) {
+    public Option<T> orElse(Supplier<? extends Option<T>> other) {
         return this;
     }
 

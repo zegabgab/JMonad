@@ -4,7 +4,7 @@ import java.util.function.*;
 
 public sealed interface Option<V> permits One, None {
     static <T> Option<T> of(T value) {
-        return value != null ? new One<>(value) : None.none();
+        return value != null ? new One<>(value) : none();
     }
 
     static <T> Option<T> none() {
@@ -29,9 +29,11 @@ public sealed interface Option<V> permits One, None {
 
     <U> Option<U> andThen(Function<? super V, ? extends Option<U>> mapper);
 
-    Option<V> filter(Predicate<? super V> predicate);
+    Option<V> or(Option<V> other);
 
-    Option<V> orElse(Supplier<? extends Option<V>> supplier);
+    Option<V> orElse(Supplier<? extends Option<V>> other);
+
+    Option<V> filter(Predicate<? super V> predicate);
 
     Option<V> attempt(Consumer<? super V> action);
 

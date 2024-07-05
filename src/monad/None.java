@@ -57,13 +57,18 @@ public record None<T>() implements Option<T> {
     }
 
     @Override
+    public Option<T> or(Option<T> other) {
+        return other;
+    }
+
+    @Override
     public Option<T> filter(Predicate<? super T> predicate) {
         return none();
     }
 
     @Override
-    public Option<T> orElse(Supplier<? extends Option<T>> supplier) {
-        return supplier.get();
+    public Option<T> orElse(Supplier<? extends Option<T>> other) {
+        return other.get();
     }
 
     @Override
