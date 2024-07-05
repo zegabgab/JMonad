@@ -71,6 +71,16 @@ public record Error<V, E>(E error) implements Result<V, E> {
     }
 
     @Override
+    public void attempt(Consumer<? super V> action) {
+
+    }
+
+    @Override
+    public void attemptError(Consumer<? super E> action) {
+        action.accept(error);
+    }
+
+    @Override
     public boolean isOk() {
         return false;
     }

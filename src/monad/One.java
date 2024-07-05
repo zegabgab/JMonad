@@ -54,6 +54,11 @@ public record One<T>(T value) implements Option<T> {
     }
 
     @Override
+    public void attempt(Consumer<? super T> action) {
+        action.accept(value);
+    }
+
+    @Override
     public boolean isOne() {
         return true;
     }

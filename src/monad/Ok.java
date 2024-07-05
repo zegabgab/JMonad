@@ -71,6 +71,16 @@ public record Ok<V, E>(V value) implements Result<V, E> {
     }
 
     @Override
+    public void attempt(Consumer<? super V> action) {
+        action.accept(value);
+    }
+
+    @Override
+    public void attemptError(Consumer<? super E> action) {
+
+    }
+
+    @Override
     public boolean isOk() {
         return true;
     }

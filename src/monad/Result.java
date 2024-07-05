@@ -35,6 +35,10 @@ public sealed interface Result<V, E> permits Ok, Error {
 
     <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper);
 
+    void attempt(Consumer<? super V> action);
+
+    void attemptError(Consumer<? super E> action);
+
     boolean isOk();
 
     boolean isError();

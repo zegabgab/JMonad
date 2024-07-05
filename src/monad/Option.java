@@ -29,6 +29,8 @@ public sealed interface Option<T> permits One, None {
 
     Option<T> orElse(Supplier<? extends Option<T>> supplier);
 
+    void attempt(Consumer<? super T> action);
+
     boolean isOne();
 
     boolean isNone();

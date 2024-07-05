@@ -57,6 +57,11 @@ public record None<T>() implements Option<T> {
     }
 
     @Override
+    public void attempt(Consumer<? super T> action) {
+
+    }
+
+    @Override
     public boolean isOne() {
         return false;
     }
