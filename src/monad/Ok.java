@@ -29,7 +29,7 @@ public record Ok<V, E>(V value) implements Result<V, E> {
     }
 
     @Override
-    public <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) {
+    public <T extends Throwable> V unwrapOrElseThrow(Function<E, T> exception) {
         return value;
     }
 

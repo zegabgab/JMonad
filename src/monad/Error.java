@@ -29,8 +29,8 @@ public record Error<V, E>(E error) implements Result<V, E> {
     }
 
     @Override
-    public <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) throws T {
-        throw exception.get();
+    public <T extends Throwable> V unwrapOrElseThrow(Function<E, T> exception) throws T {
+        throw exception.apply(error);
     }
 
     @Override
