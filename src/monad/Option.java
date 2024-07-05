@@ -2,7 +2,7 @@ package monad;
 
 import java.util.function.*;
 
-public sealed interface Option<T> permits One, None {
+public sealed interface Option<V> permits One, None {
     static <T> Option<T> of(T value) {
         return value != null ? new One<>(value) : None.none();
     }
@@ -11,29 +11,29 @@ public sealed interface Option<T> permits One, None {
         return None.none();
     }
 
-    T unwrap();
+    V unwrap();
 
-    T unwrapOr(T other);
+    V unwrapOr(V other);
 
-    T unwrapOrElse(Supplier<? extends T> other);
+    V unwrapOrElse(Supplier<? extends V> other);
 
-    <E extends Throwable> T unwrapOrThrow(E exception) throws E;
+    <T extends Throwable> V unwrapOrThrow(T exception) throws T;
 
-    <E extends Throwable> T unwrapOrElseThrow(Supplier<E> exception) throws E;
+    <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) throws T;
 
-    <U> Option<U> map(Function<? super T, U> mapper);
+    <U> Option<U> map(Function<? super V, U> mapper);
 
-    <U> Option<U> andThen(Function<? super T, ? extends Option<U>> mapper);
+    <U> Option<U> andThen(Function<? super V, ? extends Option<U>> mapper);
 
-    Option<T> filter(Predicate<? super T> predicate);
+    Option<V> filter(Predicate<? super V> predicate);
 
-    Option<T> orElse(Supplier<? extends Option<T>> supplier);
+    Option<V> orElse(Supplier<? extends Option<V>> supplier);
 
-    void attempt(Consumer<? super T> action);
+    void attempt(Consumer<? super V> action);
 
     boolean isOne();
 
     boolean isNone();
 
-    boolean isOneAnd(Predicate<? super T> predicate);
+    boolean isOneAnd(Predicate<? super V> predicate);
 }
