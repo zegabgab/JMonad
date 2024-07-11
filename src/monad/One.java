@@ -24,6 +24,16 @@ public record One<T>(T value) implements Option<T> {
     }
 
     @Override
+    public <E> Result<T, E> okOr(E error) {
+        return Result.ok(value);
+    }
+
+    @Override
+    public <E> Result<T, E> okOrElse(Supplier<E> error) {
+        return Result.ok(value);
+    }
+
+    @Override
     public <E extends Throwable> T unwrapOrThrow(E exception) {
         return value;
     }

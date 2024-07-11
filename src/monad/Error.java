@@ -3,14 +3,14 @@ package monad;
 import java.util.*;
 import java.util.function.*;
 
-public record Error<V, E>(E error) implements Result<V, E> {
-    public Error(E error) {
-        this.error = Objects.requireNonNull(error);
+public record Error<V, E>(E value) implements Result<V, E> {
+    public Error(E value) {
+        this.value = Objects.requireNonNull(value);
     }
 
     @Override
     public V unwrap() {
-        throw new NoSuchElementException("This is an error object");
+        throw new NoSuchElementException("This is an value object");
     }
 
     @Override
@@ -30,22 +30,32 @@ public record Error<V, E>(E error) implements Result<V, E> {
 
     @Override
     public <T extends Throwable> V unwrapOrElseThrow(Function<E, T> exception) throws T {
-        throw exception.apply(error);
+        throw exception.apply(value);
     }
 
     @Override
     public E unwrapError() {
-        return error;
+        return value;
     }
 
     @Override
     public E unwrapErrorOr(E other) {
-        return error;
+        return value;
     }
 
     @Override
     public E unwrapErrorOrElse(Supplier<? extends E> other) {
-        return error;
+        return value;
+    }
+
+    @Override
+    public Option<V> ok() {
+        return Option.none();
+    }
+
+    @Override
+    public Option<E> error() {
+        return Option.of(value);
     }
 
     @SuppressWarnings("unchecked")
@@ -62,22 +72,20 @@ public record Error<V, E>(E error) implements Result<V, E> {
 
     @Override
     public <R> Result<V, R> mapError(Function<? super E, R> mapper) {
-        return new Error<>(mapper.apply(error));
+        return new Error<>(mapper.apply(value));
     }
 
     @Override
     public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
-        return mapper.apply(error);
+        return mapper.apply(value);
     }
 
     @Override
-    public void attempt(Consumer<? super V> action) {
-
-    }
+    public void attempt(Consumer<? super V> action) {}
 
     @Override
     public void attemptError(Consumer<? super E> action) {
-        action.accept(error);
+        action.accept(value);
     }
 
     @Override
@@ -97,6 +105,6 @@ public record Error<V, E>(E error) implements Result<V, E> {
 
     @Override
     public boolean isErrorAnd(Predicate<? super E> predicate) {
-        return predicate.test(error);
+        return predicate.test(value);
     }
 }

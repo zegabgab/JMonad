@@ -27,6 +27,10 @@ public sealed interface Result<V, E> permits Ok, Error {
 
     E unwrapErrorOrElse(Supplier<? extends E> other);
 
+    Option<V> ok();
+
+    Option<E> error();
+
     <U> Result<U, E> map(Function<? super V, U> mapper);
 
     <U> Result<U, E> andThen(Function<? super V, ? extends Result<U, E>> mapper);

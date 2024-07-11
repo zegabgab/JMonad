@@ -35,7 +35,7 @@ public record Ok<V, E>(V value) implements Result<V, E> {
 
     @Override
     public E unwrapError() {
-        throw new NoSuchElementException("No error occurred");
+        throw new NoSuchElementException("No value occurred");
     }
 
     @Override
@@ -46,6 +46,16 @@ public record Ok<V, E>(V value) implements Result<V, E> {
     @Override
     public E unwrapErrorOrElse(Supplier<? extends E> other) {
         return other.get();
+    }
+
+    @Override
+    public Option<V> ok() {
+        return Option.of(value);
+    }
+
+    @Override
+    public Option<E> error() {
+        return Option.none();
     }
 
     @Override

@@ -27,6 +27,16 @@ public record None<T>() implements Option<T> {
     }
 
     @Override
+    public <E> Result<T, E> okOr(E error) {
+        return Result.error(error);
+    }
+
+    @Override
+    public <E> Result<T, E> okOrElse(Supplier<E> error) {
+        return Result.error(error.get());
+    }
+
+    @Override
     public <E extends Throwable> T unwrapOrThrow(E exception) throws E {
         throw exception;
     }

@@ -17,6 +17,10 @@ public sealed interface Option<V> permits One, None {
 
     V unwrapOrElse(Supplier<? extends V> other);
 
+    <E> Result<V, E> okOr(E error);
+
+    <E> Result<V, E> okOrElse(Supplier<E> error);
+
     <T extends Throwable> V unwrapOrThrow(T exception) throws T;
 
     <T extends Throwable> V unwrapOrElseThrow(Supplier<T> exception) throws T;
