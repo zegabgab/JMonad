@@ -31,6 +31,8 @@ public sealed interface Option<V> permits One, None {
 
     void attempt(Consumer<? super V> action);
 
+    void attemptOrElse(Consumer<? super V> action, Runnable other);
+
     boolean isOne();
 
     boolean isNone();
