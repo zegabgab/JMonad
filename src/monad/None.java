@@ -67,13 +67,14 @@ public record None<T>() implements Option<T> {
     }
 
     @Override
-    public void attempt(Consumer<? super T> action) {
-
+    public Option<T> attempt(Consumer<? super T> action) {
+        return this;
     }
 
     @Override
-    public void attemptOrElse(Consumer<? super T> action, Runnable other) {
+    public Option<T> attemptOrElse(Consumer<? super T> action, Runnable other) {
         other.run();
+        return this;
     }
 
     @Override

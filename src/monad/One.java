@@ -64,13 +64,15 @@ public record One<T>(T value) implements Option<T> {
     }
 
     @Override
-    public void attempt(Consumer<? super T> action) {
+    public Option<T> attempt(Consumer<? super T> action) {
         action.accept(value);
+        return this;
     }
 
     @Override
-    public void attemptOrElse(Consumer<? super T> action, Runnable other) {
+    public Option<T> attemptOrElse(Consumer<? super T> action, Runnable other) {
         action.accept(value);
+        return this;
     }
 
     @Override
