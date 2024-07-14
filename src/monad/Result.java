@@ -33,11 +33,11 @@ public sealed interface Result<V, E> permits Ok, Error {
 
     <U> Result<U, E> map(Function<? super V, U> mapper);
 
-    <U> Result<U, E> andThen(Function<? super V, ? extends Result<U, E>> mapper);
+    <U> Result<U, ? super E> andThen(Function<? super V, ? extends Result<U, ? super E>> mapper);
 
     <R> Result<V, R> mapError(Function<? super E, R> mapper);
 
-    <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper);
+    <R> Result<? super V, R> orElse(Function<? super E, ? extends Result<? super V, R>> mapper);
 
     Result<V, E> attempt(Consumer<? super V> action);
 

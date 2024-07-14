@@ -64,7 +64,7 @@ public record Ok<V, E>(V value) implements Result<V, E> {
     }
 
     @Override
-    public <U> Result<U, E> andThen(Function<? super V, ? extends Result<U, E>> mapper) {
+    public <U> Result<U, ? super E> andThen(Function<? super V, ? extends Result<U, ? super E>> mapper) {
         return mapper.apply(value);
     }
 
@@ -76,7 +76,7 @@ public record Ok<V, E>(V value) implements Result<V, E> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
+    public <R> Result<? super V, R> orElse(Function<? super E, ? extends Result<? super V, R>> mapper) {
         return (Result<V, R>) this;
     }
 

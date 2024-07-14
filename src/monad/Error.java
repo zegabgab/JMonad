@@ -66,7 +66,7 @@ public record Error<V, E>(E value) implements Result<V, E> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <U> Result<U, E> andThen(Function<? super V, ? extends Result<U, E>> mapper) {
+    public <U> Result<U, ? super E> andThen(Function<? super V, ? extends Result<U, ? super E>> mapper) {
         return (Result<U, E>) this;
     }
 
@@ -76,7 +76,7 @@ public record Error<V, E>(E value) implements Result<V, E> {
     }
 
     @Override
-    public <R> Result<V, R> orElse(Function<? super E, ? extends Result<V, R>> mapper) {
+    public <R> Result<? super V, R> orElse(Function<? super E, ? extends Result<? super V, R>> mapper) {
         return mapper.apply(value);
     }
 
