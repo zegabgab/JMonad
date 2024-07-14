@@ -81,14 +81,11 @@ public record Error<V, E>(E value) implements Result<V, E> {
     }
 
     @Override
-    public Result<V, E> attempt(Consumer<? super V> action) {
-        return this;
-    }
+    public void attempt(Consumer<? super V> action) {}
 
     @Override
-    public Result<V, E> attemptError(Consumer<? super E> action) {
+    public void attemptError(Consumer<? super E> action) {
         action.accept(value);
-        return this;
     }
 
     @Override

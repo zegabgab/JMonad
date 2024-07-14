@@ -33,9 +33,9 @@ public sealed interface Option<V> permits One, None {
 
     Option<V> orElse(Supplier<? extends Option<V>> supplier);
 
-    Option<V> attempt(Consumer<? super V> action);
+    void attempt(Consumer<? super V> action);
 
-    Option<V> attemptOrElse(Consumer<? super V> action, Runnable other);
+    void attemptOrElse(Consumer<? super V> action, Runnable other);
 
     boolean isOne();
 
