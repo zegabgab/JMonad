@@ -63,9 +63,10 @@ public record Ok<V, E>(V value) implements Result<V, E> {
         return new Ok<>(mapper.apply(value));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <U> Result<U, E> andThen(Function<? super V, ? extends Result<U, ? extends E>> mapper) {
-        return mapper.apply(value).mapError(Function.identity());
+        return (Result<U, E>) mapper.apply(value);
     }
 
     @SuppressWarnings("unchecked")

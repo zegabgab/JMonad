@@ -53,9 +53,10 @@ public record One<T>(T value) implements Option<T> {
         return new One<>(mapper.apply(value));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <U> Option<U> andThen(Function<? super T, ? extends Option<? extends U>> mapper) {
-        return mapper.apply(value).map(Function.identity());
+        return (Option<U>) mapper.apply(value);
     }
 
     @Override
