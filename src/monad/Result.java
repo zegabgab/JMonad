@@ -41,7 +41,6 @@ public sealed interface Result<V, E> permits Ok, Error {
 
     Result<V, E> or(Result<V, E> other);
 
-    void attempt(Consumer<? super V> action);
     Result<V, E> attempt(Consumer<? super V> action);
 
     Result<V, E> attemptError(Consumer<? super E> action);
