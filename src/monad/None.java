@@ -52,7 +52,7 @@ public record None<T>() implements Option<T> {
     }
 
     @Override
-    public <U> Option<U> andThen(Function<? super T, ? extends Option<U>> mapper) {
+    public <U> Option<U> andThen(Function<? super T, ? extends Option<? extends U>> mapper) {
         return none();
     }
 

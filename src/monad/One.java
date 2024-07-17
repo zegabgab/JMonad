@@ -54,8 +54,8 @@ public record One<T>(T value) implements Option<T> {
     }
 
     @Override
-    public <U> Option<U> andThen(Function<? super T, ? extends Option<U>> mapper) {
-        return mapper.apply(value);
+    public <U> Option<U> andThen(Function<? super T, ? extends Option<? extends U>> mapper) {
+        return mapper.apply(value).map(Function.identity());
     }
 
     @Override

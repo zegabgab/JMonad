@@ -27,7 +27,7 @@ public sealed interface Option<V> permits One, None {
 
     <U> Option<U> map(Function<? super V, U> mapper);
 
-    <U> Option<U> andThen(Function<? super V, ? extends Option<U>> mapper);
+    <U> Option<U> andThen(Function<? super V, ? extends Option<? extends U>> mapper);
 
     Option<V> or(Option<V> other);
 
