@@ -11,6 +11,10 @@ public sealed interface Option<V> permits One, None {
         return None.none();
     }
 
+    static <T> Option<T> conditional(boolean condition, Supplier<? extends T> supplier) {
+        return condition ? of(supplier.get()) : none();
+    }
+
     V unwrap();
 
     V unwrapOr(V other);
